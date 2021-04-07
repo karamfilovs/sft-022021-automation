@@ -3,6 +3,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,9 +28,10 @@ public class BaseTest {
     }
 
     @BeforeEach
-    public void beforeEachTest() {
+    public void beforeEachTest(TestInfo info) {
         //Before every test
         startBrowser(System.getProperty("browser"));
+        System.out.println("Starting test: " + info.getDisplayName());
         driver.manage().window().maximize(); //Maximizes browser
         driver.manage().deleteAllCookies(); //Delete all cookies
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

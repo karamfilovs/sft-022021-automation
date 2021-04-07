@@ -1,15 +1,9 @@
-import api.ClientAPI;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import pages.ClientPage;
-import pages.HomePage;
-import pages.LoginPage;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 
 public class ClientPageTest extends BaseTest {
 
@@ -34,6 +28,15 @@ public class ClientPageTest extends BaseTest {
         Assertions.assertEquals("karamfilovs@gmail.com", homePage.getUserPanelText());
         homePage.clickClientLink();
         Assertions.assertEquals("Все още нямате добавени клиенти.", clientPage.getEmptyListMessage());
+    }
+
+    @Test
+    @DisplayName("Can get all clients via API")
+    public void canCanGetAllClientsViaAPI(){
+        clientAPI.deleteAll(); //Delete all clients
+        Response response = clientAPI.getAll();
+        Assertions.assertEquals(204, response.getStatusCode());
+        Assertions.assertEquals( "{\"clients\":[]}", response.getBody().asString());
     }
 
 

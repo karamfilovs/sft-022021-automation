@@ -8,38 +8,12 @@ import pages.LoginPage;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginPageTest {
-    private WebDriver driver;
-
-    @BeforeAll
-    public static void beforeAllTests() {
-        WebDriverManager.firefoxdriver().setup(); // WebDriver manager configure the right driver for chrome
-    }
-
-
-
-    @BeforeEach
-    public void beforeEachTest() {
-        //Before every test
-        driver = new FirefoxDriver(); //Creates new browser instance
-        driver.manage().window().maximize(); //Maximizes browser
-        driver.manage().deleteAllCookies(); //Delete all cookies
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-
-    @AfterEach
-    public void afterEachTest() {
-        //After every test
-        driver.quit();    //Kills the browser instance
-    }
+public class LoginPageTest extends BaseTest {
 
 
     @Test
     @DisplayName("Can login with valid credentials")
     public void canLoginWithValidCredentials() {
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
         loginPage.navigateTo();
         loginPage.enterEmail("karamfilovs@gmail.com");
         loginPage.enterPassword("123456");

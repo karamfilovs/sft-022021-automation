@@ -21,7 +21,6 @@ public class LoginHardWayTest {
 
     @BeforeEach
     public void beforeEachTest() {
-        //Before every test
         driver = new ChromeDriver(); //Creates new browser instance
         driver.manage().window().maximize(); //Maximizes browser
         driver.manage().deleteAllCookies(); //Delete all cookies
@@ -31,7 +30,6 @@ public class LoginHardWayTest {
 
     @AfterEach
     public void afterEachTest() {
-        //After every test
         driver.quit();    //Kills the browser instance
     }
 

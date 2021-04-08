@@ -23,8 +23,9 @@ public class BaseTest {
 
     @BeforeAll
     public static void beforeAllTests() {
-        WebDriverManager.chromedriver().setup();
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.chromedriver().setup(); //Downloads chrome driver and sets up env var for it
+        WebDriverManager.firefoxdriver().setup(); //Downloads firefox driver and sets up en var for it
+
     }
 
     @BeforeEach
@@ -34,8 +35,8 @@ public class BaseTest {
         System.out.println("Starting test: " + info.getDisplayName());
         driver.manage().window().maximize(); //Maximizes browser
         driver.manage().deleteAllCookies(); //Delete all cookies
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        loginPage = new LoginPage(driver);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); //Implicitly wait 10 seconds
+        loginPage = new LoginPage(driver); //Creating instances
         homePage = new HomePage(driver);
         clientPage = new ClientPage(driver);
         clientAPI = new ClientAPI();
@@ -55,7 +56,6 @@ public class BaseTest {
 
     @AfterEach
     public void afterEachTest() {
-        //After every test
         driver.quit();    //Kills the browser instance
     }
 }

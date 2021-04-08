@@ -35,9 +35,10 @@ public class ClientPageTest extends BaseTest {
     public void canCanGetAllClientsViaAPI(){
         clientAPI.deleteAll(); //Delete all clients
         Response response = clientAPI.getAll();
-        Assertions.assertEquals(204, response.getStatusCode());
+        Assertions.assertEquals(200, response.getStatusCode());
         Assertions.assertEquals( "{\"clients\":[]}", response.getBody().asString());
     }
+
 
 
 }

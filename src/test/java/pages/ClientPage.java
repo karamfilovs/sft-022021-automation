@@ -57,6 +57,32 @@ public class ClientPage {
         return logoutSuccessDiv.getText().trim();
     }
 
+    public String getErrorMessage() {
+        WebElement errorDiv = driver.findElement(By.id("error"));
+        return errorDiv.getText().trim();
+    }
+
+    public void expandSearch(){
+        System.out.println("Expanding search form");
+        WebElement searchButton = driver.findElement(By.id("searchbtn"));
+        searchButton.click();
+    }
+
+    private void enterCompanyNameForSearch(String name){
+        WebElement nameField = driver.findElement(By.name("fnm"));
+        nameField.sendKeys(name);
+    }
+
+    private void triggerSearch(){
+        WebElement submitButton = driver.findElement(By.name("s"));
+        submitButton.click();
+    }
+
+    public void search(String companyName){
+        enterCompanyNameForSearch(companyName);
+        triggerSearch();
+    }
+
     public String getEmptyListMessage(){
         WebElement emptyDiv = driver.findElement(By.id("emptylist"));
         return emptyDiv.getText().trim();

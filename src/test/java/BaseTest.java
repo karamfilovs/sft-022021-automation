@@ -8,6 +8,8 @@ import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.ClientPage;
 import pages.HomePage;
 import pages.LoginPage;
@@ -15,6 +17,7 @@ import pages.LoginPage;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BaseTest.class);
     private WebDriver driver;
     protected LoginPage loginPage;
     protected HomePage homePage;
@@ -32,7 +35,7 @@ public class BaseTest {
     public void beforeEachTest(TestInfo info) {
         //Before every test
         startBrowser(System.getProperty("browser"));
-        System.out.println("Starting test: " + info.getDisplayName());
+        LOGGER.info("Starting test: " + info.getDisplayName());
         driver.manage().window().maximize(); //Maximizes browser
         driver.manage().deleteAllCookies(); //Delete all cookies
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); //Implicitly wait 10 seconds

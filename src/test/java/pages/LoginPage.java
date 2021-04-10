@@ -3,8 +3,11 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginPage {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
     private final String BASE_URL = System.getProperty("url");
     private final String EMAIL = System.getProperty("email");
     private final String PASSWORD = System.getProperty("password");
@@ -25,7 +28,7 @@ public class LoginPage {
 
     public void enterEmail(String email) {
         //Enter valid email
-        System.out.println("Entering email: " + email);
+        LOGGER.info("Entering email: " + email);
         WebElement emailField = driver.findElement(By.id("loginusername")); //Locate email element
         emailField.clear(); //Clear any text inside of email field
         emailField.sendKeys(email); //Populate email field with real email
@@ -33,7 +36,7 @@ public class LoginPage {
 
     public void enterPassword(String password) {
         //Enter valid password for the email
-        System.out.println("Entering password: " + password);
+        LOGGER.info("Entering password: " + password);
         WebElement passwordField = driver.findElement(By.id("loginpassword"));
         passwordField.clear();
         passwordField.sendKeys(password);
@@ -41,7 +44,7 @@ public class LoginPage {
 
     public void clickLoginButton() {
         //Click Login button
-        System.out.println("Clicking Login button");
+        LOGGER.info("Clicking Login button");
         WebElement loginButton = driver.findElement(By.id("loginsubmit"));
         loginButton.click();
     }
@@ -58,7 +61,7 @@ public class LoginPage {
 
     public void navigateTo() {
         //Navigate to inv.bg login page https://st2016.inv.bg
-        System.out.println("Navigating to:" + BASE_URL);
+        LOGGER.info("Navigating to:" + BASE_URL);
         driver.navigate().to(BASE_URL);
     }
 }

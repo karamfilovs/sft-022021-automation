@@ -87,4 +87,9 @@ public class ClientPage {
         WebElement emptyDiv = driver.findElement(By.id("emptylist"));
         return emptyDiv.getText().trim();
     }
+
+    public String getClientListItem(){
+        WebElement searchResultDiv = driver.findElement(By.className("faktura_id"));
+        return searchResultDiv.getText().trim();
+    }
 }
